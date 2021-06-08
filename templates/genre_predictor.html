@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Genre Predictor with Movie Posters</title>
+</head>
+
+<body>
+    <h1 class="text-white bg-dark d-flex justify-content-center"> Genre Predictor </h1>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+                <img src="../static/imgs/jeet-dhanoa-me3vI8dFz5A-unsplash.jpg" alt="Movie Poster Book" class="img-responsive" width="100%">
+            </div>
+            <div class="col-4">
+                <img src="../static/imgs/serge-kutuzov-7ya3l_JdHpM-unsplash.jpg" alt="Suicide Squad Poster" class="img-responsive" width="100%">
+            </div>
+            <div class="col-4">
+                <img src="../static/imgs/steven-lasry-LtDKx9ICQuI-unsplash.jpg" alt="Judy Poster" class="img-responsive" width="100%">
+            </div>
+        </div>
+    </div>
+
+    <h4 class="text-center">
+        Have you ever realized how much information about a movie you can extract from its poster alone? 
+        Using deep learning, we can predict a movie genre just by looking at its poster.<br>
+        <u class="bg-primary text-white">Upload an image of a movie poster and try it for yourself!</u>
+    </h4>
+
+    <form id="form" method="post" action="{{ url_for('predict') }}" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="poster" class="font-weight-bold"> Upload a poster</label>
+            <br />
+            <input type="file" name="poster" id="poster" accept="image/png, image/jpg, image/jpeg" onchange="displayImage(input)" />
+        </div>
+        <div class="preview d-flex justify-content-center">
+            <img src="" id="preview">
+        </div>
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-dark">Submit</button>
+        </div>
+    </form>
+
+    <div class="result">
+        {% block content %}{% endblock %}
+    </div>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/genre_predictor.js') }}"></script>
+</body>
+</html>
